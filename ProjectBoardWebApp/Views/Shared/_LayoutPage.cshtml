@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="description" content="Bootstrap Admin App">
+   <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+    <title>@ViewData["Title"] - ProjBoard</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Place styles for plugins -->
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)}
+
+    <environment names="Development">
+        <!-- =============== VENDOR STYLES ===============-->
+        <link href='~/vendor/@@fortawesome/fontawesome-free/css/brands.css' rel="stylesheet" />
+        <link href='~/vendor/@@fortawesome/fontawesome-free/css/regular.css' rel="stylesheet" />
+        <link href='~/vendor/@@fortawesome/fontawesome-free/css/solid.css' rel="stylesheet" />
+        <link href='~/vendor/@@fortawesome/fontawesome-free/css/fontawesome.css' rel="stylesheet" />
+        <!-- =============== BOOTSTRAP STYLES ===============-->
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <!-- =============== APP STYLES ===============-->
+        <link href="~/css/app.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+    <environment names="Staging,Production">
+        <!-- =============== VENDOR STYLES ===============-->
+        <link href='~/vendor/@@fortawesome/fontawesome-free/css/brands.css' rel="stylesheet" />
+        <link href='~/vendor/@@fortawesome/fontawesome-free/css/regular.css' rel="stylesheet" />
+        <link href='~/vendor/@@fortawesome/fontawesome-free/css/solid.css' rel="stylesheet" />
+        <link href='~/vendor/@@fortawesome/fontawesome-free/css/fontawesome.css' rel="stylesheet" />
+        <link href="~/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
+        <!-- =============== BOOTSTRAP STYLES ===============-->
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <!-- =============== APP STYLES ===============-->
+        <link href="~/css/app.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+
+</head>
+
+<body style="background-color:gainsboro;">
+   <div class="wrapper">
+       @RenderBody()
+   </div>
+   <div class="p-lg text-center">
+      <span>&copy;</span>
+      <span>2020</span>
+      <span>-</span>
+      <span>Projboard</span>
+      <br>
+      <span>A Project Management Tool</span>
+   </div>
+
+   <environment names="Development">
+
+       <!-- =============== VENDOR SCRIPTS ===============-->
+       <script src="~/vendor/modernizr/modernizr.custom.js"></script>
+       <script src="~/vendor/js-storage/js.storage.js"></script>
+       <script src="~/vendor/i18next/i18next.js"></script>
+       <script src="~/vendor/i18next-xhr-backend/i18nextXHRBackend.js"></script>
+       <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+       <script src="~/vendor/popper.js/dist/umd/popper.js"></script>
+       <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+       <script src="~/vendor/parsleyjs/dist/parsley.js"></script>
+
+       <!-- =============== PAGE VENDOR SCRIPTS ===============-->
+       @RenderSection("scripts", required: false)
+
+       
+   </environment>
+
+    <environment names="Staging,Production">
+
+        <!-- =============== VENDOR SCRIPTS ===============-->
+        <script src="~/vendor/modernizr/modernizr.custom.js"></script>
+        <script src="~/vendor/js-storage/js.storage.js"></script>
+        <script src="~/vendor/i18next/i18next.js"></script>
+        <script src="~/vendor/i18next-xhr-backend/i18nextXHRBackend.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="~/vendor/popper.js/dist/umd/popper.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/vendor/parsleyjs/dist/parsley.js"></script>
+
+        <!-- =============== PAGE VENDOR SCRIPTS ===============-->
+        @RenderSection("scripts", required: false)
+
+        <!-- =============== APP SCRIPTS ===============-->
+
+        
+
+    </environment>
+
+</body>
+
+</html>
+

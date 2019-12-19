@@ -1,0 +1,130 @@
+﻿@page
+@model RegisterModel
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewData["Title"] = "Register";
+}
+
+<div class="block-center mt-4 wd-xl">
+    <!-- START card-->
+    <div class="card card-flat">
+        <div class="card-header text-center bg-dark">
+            <a href="#">
+                <img class="block-center" src="~/images/logo.png" alt="Image" />
+            </a>
+        </div>
+        <div class="card-body">
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="mb-3">
+                <p class="text-center py-2">Create a new account.</p>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <!--<div class="form-group">
+                    <label class="text-muted" asp-for="Input.FirstName"></label>
+                    <div class="input-group with-focus">
+                        <input class="form-control border-right-0" asp-for="Input.FirstName" type="text" placeholder="" autocomplete="off" />
+                        <div class="input-group-append">
+                            <span class="input-group-text text-muted bg-transparent border-left-0">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="text-muted" asp-for="Input.LastName"></label>
+                    <div class="input-group with-focus">
+                        <input class="form-control border-right-0" asp-for="Input.LastName" type="text" placeholder="" autocomplete="off" />
+                        <div class="input-group-append">
+                            <span class="input-group-text text-muted bg-transparent border-left-0">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="text-muted" asp-for="Input.DOB"></label>
+                    <div class="input-group with-focus">
+                        <input class="form-control border-right-0" type="date" asp-for="Input.DOB" placeholder="" autocomplete="off" />
+                        <div class="input-group-append">
+                            <span class="input-group-text text-muted bg-transparent border-left-0">
+                                <em class="fa fa-calendar"></em>
+                            </span>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="form-group">
+                    <label class="text-muted" asp-for="Input.Email"></label>
+                    <div class="input-group with-focus">
+                        <input class="form-control border-right-0" type="email" asp-for="Input.Email" placeholder="Enter email" autocomplete="off" required="required" />
+                        <div class="input-group-append">
+                            <span class="input-group-text text-muted bg-transparent border-left-0">
+                                <em class="fa fa-envelope"></em>
+                            </span>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="text-muted" asp-for="Input.Password">Password</label>
+                    <div class="input-group with-focus">
+                        <input class="form-control border-right-0" asp-for="Input.Password" type="password" placeholder="Password" autocomplete="off" required="required" />
+                        <div class="input-group-append">
+                            <span class="input-group-text text-muted bg-transparent border-left-0">
+                                <em class="fa fa-lock"></em>
+                            </span>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="text-muted" asp-for="Input.ConfirmPassword">Retype Password</label>
+                    <div class="input-group with-focus">
+                        <input class="form-control border-right-0" asp-for="Input.ConfirmPassword" type="password" placeholder="Retype Password" autocomplete="off" required="required" />
+                        <div class="input-group-append">
+                            <span class="input-group-text text-muted bg-transparent border-left-0">
+                                <em class="fa fa-lock"></em>
+                            </span>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <button class="btn btn-block btn-primary mt-3" type="submit">Create account</button>
+                <p class="pt-3 text-center"><a class="text-dark" asp-area="Identity" asp-page="/Account/Login">Have an account?</a></p>
+            </form>
+
+        </div>
+    </div>
+    <!-- END card-->
+</div>
+
+<!--<div class="col-md-6 col-md-offset-2">
+    <section>
+        <h4>Use another service to register.</h4>
+        <hr />
+        @{
+            if ((Model.ExternalLogins?.Count ?? 0) == 0)
+            {
+                <div>
+                    <p>
+                        There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                        for details on setting up this ASP.NET application to support logging in via external services.
+                    </p>
+                </div>
+            }
+            else
+            {
+                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                    <div>
+                        <p>
+                            @foreach (var provider in Model.ExternalLogins)
+                            {
+                                <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                            }
+                        </p>
+                    </div>
+                </form>
+            }
+        }
+    </section>
+</div> -->
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
