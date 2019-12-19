@@ -8,6 +8,12 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20191219041914_CreateProjectTable.cs" />
     <Compile Remove="Data\Migrations\20191219041914_CreateProjectTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191219135843_CustomUserFields.cs" />
+    <Compile Remove="Data\Migrations\20191219135843_CustomUserFields.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191219140240_CustomUserFields.cs" />
+    <Compile Remove="Data\Migrations\20191219140240_CustomUserFields.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191219141506_CustomUserFields.cs" />
+    <Compile Remove="Data\Migrations\20191219141506_CustomUserFields.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
