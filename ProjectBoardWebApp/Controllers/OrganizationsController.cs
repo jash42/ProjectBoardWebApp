@@ -10,24 +10,22 @@ using ProjectBoardWebApp.Models;
 
 namespace ProjectBoardWebApp.Controllers
 {
-    public class ProjectsController : Controller
+    public class OrganizationsController : Controller
     {
-        private readonly ProjectDbContext _context;
-        private readonly OrgDbContext _orgcontext;
+        private readonly OrgDbContext _context;
 
-        public ProjectsController(ProjectDbContext context, OrgDbContext orgcontext)
+        public OrganizationsController(OrgDbContext context)
         {
             _context = context;
-            _orgcontext = orgcontext;
         }
 
-        // GET: Projects
+        // GET: Organizations
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Project.ToListAsync());
+            return View(await _context.Organizations.ToListAsync());
         }
 
-        // GET: Projects/Details/5
+        // GET: Organizations/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,78 +33,62 @@ namespace ProjectBoardWebApp.Controllers
                 return NotFound();
             }
 
-            var project = await _context.Project
-                .FirstOrDefaultAsync(m => m.ProjectId == id);
-            if (project == null)
+            var organizations = await _context.Organizations
+                .FirstOrDefaultAsync(m => m.OrgID == id);
+            if (organizations == null)
             {
                 return NotFound();
             }
 
-            return View(project);
+            return View(organizations);
         }
 
-        // GET: Projects/Create
+        // GET: Organizations/Create
         public IActionResult Create()
         {
-            List<Organizations> orglist = new List<Organizations>();
-
-            orglist = (from o in _orgcontext.Organizations orderby o.OrgName select o).ToList();
-
-            orglist.Insert(0, new Organizations { OrgID = 0, OrgName = " -- Select Client -- " });
-
-            ViewBag.ListOfOrgs = orglist;
-
             return View();
         }
 
-        // POST: Projects/Create
+        // POST: Organizations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProjectId,ProjectName,ProjectDesc,ProjectStartDate,ProjectStatus,LeaderID,ClientId,HoursProjected,HoursUsed")] Project project)
+        public async Task<IActionResult> Create([Bind("OrgID,OrgName,OrgAddress,OrgAddress2,OrgCity,OrgState,OrgZip,OrgPhone,OrgWebsite,MainContact,StagingUrl")] Organizations organizations)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(project);
+                _context.Add(organizations);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(project);
+            return View(organizations);
         }
 
-        // GET: Projects/Edit/5
+        // GET: Organizations/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            List<Organizations> orglist = new List<Organizations>();
-
-            orglist = (from o in _orgcontext.Organizations orderby o.OrgName select o).ToList();
-
-            orglist.Insert(0, new Organizations { OrgName = " -- Select Client -- " });
-
-            ViewBag.ListOfOrgs = orglist;
-
             if (id == null)
             {
                 return NotFound();
             }
 
-            var project = await _context.Project.FindAsync(id);
-            if (project == null)
+            var organizations = await _context.Organizations.FindAsync(id);
+            if (organizations == null)
             {
                 return NotFound();
             }
-            return View(project);
+            return View(organizations);
         }
 
-        // POST: Projects/Edit/5
+        // POST: Organizations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProjectId,ProjectName,ProjectDesc,ProjectStartDate,ProjectStatus,LeaderID,ClientId,HoursProjected,HoursUsed")] Project project)
+        public async Task<IActionResult> Edit(int id, [Bind("OrgID,OrgName,OrgAddress,OrgAddress2,OrgCity,OrgState,OrgZip,OrgPhone,OrgWebsite,MainContact,StagingUrl")] Organizations organizations)
         {
-            if (id != project.ProjectId)
+            if (id != organizations.OrgID)
             {
                 return NotFound();
             }
@@ -115,12 +97,12 @@ namespace ProjectBoardWebApp.Controllers
             {
                 try
                 {
-                    _context.Update(project);
+                    _context.Update(organizations);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProjectExists(project.ProjectId))
+                    if (!OrganizationsExists(organizations.OrgID))
                     {
                         return NotFound();
                     }
@@ -131,10 +113,10 @@ namespace ProjectBoardWebApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(project);
+            return View(organizations);
         }
 
-        // GET: Projects/Delete/5
+        // GET: Organizations/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -142,30 +124,30 @@ namespace ProjectBoardWebApp.Controllers
                 return NotFound();
             }
 
-            var project = await _context.Project
-                .FirstOrDefaultAsync(m => m.ProjectId == id);
-            if (project == null)
+            var organizations = await _context.Organizations
+                .FirstOrDefaultAsync(m => m.OrgID == id);
+            if (organizations == null)
             {
                 return NotFound();
             }
 
-            return View(project);
+            return View(organizations);
         }
 
-        // POST: Projects/Delete/5
+        // POST: Organizations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var project = await _context.Project.FindAsync(id);
-            _context.Project.Remove(project);
+            var organizations = await _context.Organizations.FindAsync(id);
+            _context.Organizations.Remove(organizations);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProjectExists(int id)
+        private bool OrganizationsExists(int id)
         {
-            return _context.Project.Any(e => e.ProjectId == id);
+            return _context.Organizations.Any(e => e.OrgID == id);
         }
     }
 }

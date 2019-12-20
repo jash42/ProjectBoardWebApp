@@ -1,0 +1,112 @@
+﻿@model IEnumerable<ProjectBoardWebApp.Models.Organizations>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-heading">
+    Organizations
+    Organizations
+    <div class="ml-auto">
+        <a class="btn btn-labeled btn-info mb-2" asp-action="Create">
+            <span class="btn-label">
+                <i class="fa fas fa-plus-square"></i>
+            </span>Create Project
+        </a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <div class="text-sm">Organizations that we do business with</div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive bootgrid">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrgName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrgAddress)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrgAddress2)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrgCity)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrgState)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrgZip)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrgPhone)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrgWebsite)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MainContact)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StagingUrl)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrgName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrgAddress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrgAddress2)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrgCity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrgState)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrgZip)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrgPhone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrgWebsite)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MainContact)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StagingUrl)
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.OrgID" class="btn btn-xs btn-inverse"><span class="fa fa-desktop"></span></a>
+                                <a asp-action="Edit" asp-route-id="@item.OrgID" class="btn btn-xs btn-primary"><span class="fa fa-pencil-alt"></span></a>
+                                <a asp-action="Delete" asp-route-id="@item.OrgID" class="btn btn-xs btn-danger"><span class="fa fa-trash"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="/vendor/jquery-bootgrid/dist/jquery.bootgrid.js"></script>
+    <script src="/vendor/jquery-bootgrid/dist/jquery.bootgrid.fa.js"></script>
+}

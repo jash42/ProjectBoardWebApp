@@ -30,6 +30,25 @@
                     </li>
                 </ul>
             </li>
+            <li class="@Html.isActive(controller: "Organizations")">
+                <a href="#organizations" title="Organizations" data-toggle="collapse">
+                    <em class="icon-people"></em>
+                    <span data-localize="sidebar.nav.Organizations">Organizations</span>
+                </a>
+                <ul id="organizations" class="sidebar-nav sidebar-subnav collapse">
+                    <li class="sidebar-subnav-header">Organizations</li>
+                    <li class="@Html.isActive("Organizations", "Index")">
+                        <a href="@Url.Action("Index", "Organizations")" title="All Organizations">
+                            <span>All Organizations</span>
+                        </a>
+                    </li>
+                    <li class="@Html.isActive("Organizations", "Create")">
+                        <a href="@Url.Action("Create", "Organizations")" title="Add Organization">
+                            <span>Add New Organization</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
 
             <li class="nav-heading">

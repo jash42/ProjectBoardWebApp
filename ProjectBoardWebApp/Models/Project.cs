@@ -19,6 +19,7 @@ namespace ProjectBoardWebApp.Models
         [Required]
         [StringLength(500)]
         [Display(Name = "Description")]
+        [DataType(DataType.MultilineText)]
         public string ProjectDesc { get; set; }
 
         [Required]
@@ -31,8 +32,11 @@ namespace ProjectBoardWebApp.Models
         public string ProjectStatus { get; set; }
 
         [StringLength(450)]
+        [Display(Name = "Project lead")]
         public string LeaderID { get; set; }
 
+        [Required]
+        [Display(Name = "Client")]
         public int ClientId { get; set; }
 
         [Display(Name ="Projected Hours")]

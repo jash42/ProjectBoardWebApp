@@ -16,6 +16,8 @@
     <Compile Remove="Data\Migrations\20191219141506_CustomUserFields.Designer.cs" />
     <Compile Remove="Migrations\20191220143505_CreateHoursFields.cs" />
     <Compile Remove="Migrations\20191220143505_CreateHoursFields.Designer.cs" />
+    <Compile Remove="Migrations\OrgDb\20191220152043_InitialOrgs.cs" />
+    <Compile Remove="Migrations\OrgDb\20191220152043_InitialOrgs.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
