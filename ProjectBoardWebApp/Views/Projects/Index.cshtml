@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjectBoardWebApp.Models.Project>
+﻿@model IEnumerable<ProjectBoardWebApp.ViewModel.ProjectFullView>
 
 @{
     ViewData["Title"] = "Projects Main";
@@ -15,7 +15,6 @@
         </a>
     </div>
 </div>
-
 <div class="card">
     <div class="card-header">
         <div class="text-sm">Open Projects under development</div>
@@ -26,22 +25,22 @@
                 <thead>
                     <tr>
                         <th data-column-id="Name" data-order="desc">
-                            @Html.DisplayNameFor(model => model.ProjectName)
+                            @Html.DisplayNameFor(model => model.projectVm.ProjectName)
                         </th>
                         <th data-column-id="Description">
-                            @Html.DisplayNameFor(model => model.ProjectDesc)
+                            @Html.DisplayNameFor(model => model.projectVm.ProjectDesc)
                         </th>
                         <th data-column-id="StartDate">
-                            @Html.DisplayNameFor(model => model.ProjectStartDate)
+                            @Html.DisplayNameFor(model => model.projectVm.ProjectStartDate)
                         </th>
                         <th data-column-id="Status">
-                            @Html.DisplayNameFor(model => model.ProjectStatus)
+                            @Html.DisplayNameFor(model => model.projectVm.ProjectStatus)
                         </th>
                         <th data-column-id="Leader">
-                            @Html.DisplayNameFor(model => model.LeaderID)
+                            @Html.DisplayNameFor(model => model.projectVm.LeaderID)
                         </th>
                         <th data-column-id="Client">
-                            @Html.DisplayNameFor(model => model.ClientId)
+                            @Html.DisplayNameFor(model => model.projectVm.ClientId)
                         </th>
                         <th data-column-id="commands" data-formatter="commands" data-sortable="false"></th>
                     </tr>
@@ -51,27 +50,27 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ProjectName)
+                                @Html.DisplayFor(modelItem => item.projectVm.ProjectName)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ProjectDesc)
+                                @Html.DisplayFor(modelItem => item.projectVm.ProjectDesc)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ProjectStartDate)
+                                @Html.DisplayFor(modelItem => item.projectVm.ProjectStartDate)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ProjectStatus)
+                                @Html.DisplayFor(modelItem => item.projectVm.ProjectStatus)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.LeaderID)
+                                @Html.DisplayFor(modelItem => item.projectVm.LeaderID)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ClientId)
+                                @Html.DisplayFor(modelItem => item.orgVm.OrgName) 
                             </td>
                             <td>
-                                <a asp-action="Details" asp-route-id="@item.ProjectId" class="btn btn-xs btn-inverse"><span class="fa fa-desktop"></span></a>
-                                <a asp-action="Edit" asp-route-id="@item.ProjectId" class="btn btn-xs btn-primary"><span class="fa fa-pencil-alt"></span></a>
-                                <a asp-action="Delete" asp-route-id="@item.ProjectId" class="btn btn-xs btn-danger"><span class="fa fa-trash"></span></a>
+                                <a asp-action="Details" asp-route-id="@item.projectVm.ProjectId" class="btn btn-xs btn-inverse"><span class="fa fa-desktop"></span></a>
+                                <a asp-action="Edit" asp-route-id="@item.projectVm.ProjectId" class="btn btn-xs btn-primary"><span class="fa fa-pencil-alt"></span></a>
+                                <a asp-action="Delete" asp-route-id="@item.projectVm.ProjectId" class="btn btn-xs btn-danger"><span class="fa fa-trash"></span></a>
                             </td>
                         </tr>
                     }

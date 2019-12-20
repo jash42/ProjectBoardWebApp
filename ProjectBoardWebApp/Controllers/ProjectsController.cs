@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjectBoardWebApp.Data;
 using ProjectBoardWebApp.Models;
+using ProjectBoardWebApp.ViewModel;
 
 namespace ProjectBoardWebApp.Controllers
 {
@@ -15,18 +16,30 @@ namespace ProjectBoardWebApp.Controllers
         private readonly ProjectDbContext _context;
         private readonly OrgDbContext _orgcontext;
 
+        List<Organizations> orgList = new List<Organizations>();
+        List<Project> projList = new List<Project>();
+
         public ProjectsController(ProjectDbContext context, OrgDbContext orgcontext)
         {
             _context = context;
             _orgcontext = orgcontext;
         }
 
+        
         // GET: Projects
-        public async Task<IActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await _context.Project.ToListAsync());
+            orgList = (from o in _orgcontext.Organizations orderby o.OrgName select o).ToList();
+            projList = (from p in _context.Project orderby p.ProjectId select p).ToList();
+
+            var FullProjectData = from p in projList
+                                  join o in orgList on p.ClientId equals o.OrgID
+                                  select new ProjectFullView { projectVm = p, orgVm = o };
+
+            return View(FullProjectData);
         }
 
+        
         // GET: Projects/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -48,13 +61,11 @@ namespace ProjectBoardWebApp.Controllers
         // GET: Projects/Create
         public IActionResult Create()
         {
-            List<Organizations> orglist = new List<Organizations>();
+            orgList = (from o in _orgcontext.Organizations orderby o.OrgName select o).ToList();
 
-            orglist = (from o in _orgcontext.Organizations orderby o.OrgName select o).ToList();
+            orgList.Insert(0, new Organizations { OrgID = 0, OrgName = " -- Select Client -- " });
 
-            orglist.Insert(0, new Organizations { OrgID = 0, OrgName = " -- Select Client -- " });
-
-            ViewBag.ListOfOrgs = orglist;
+            ViewBag.ListOfOrgs = orgList;
 
             return View();
         }
@@ -78,13 +89,11 @@ namespace ProjectBoardWebApp.Controllers
         // GET: Projects/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            List<Organizations> orglist = new List<Organizations>();
+            orgList = (from o in _orgcontext.Organizations orderby o.OrgName select o).ToList();
 
-            orglist = (from o in _orgcontext.Organizations orderby o.OrgName select o).ToList();
+            orgList.Insert(0, new Organizations { OrgName = " -- Select Client -- " });
 
-            orglist.Insert(0, new Organizations { OrgName = " -- Select Client -- " });
-
-            ViewBag.ListOfOrgs = orglist;
+            ViewBag.ListOfOrgs = orgList;
 
             if (id == null)
             {
