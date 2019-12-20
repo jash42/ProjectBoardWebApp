@@ -54,7 +54,7 @@ namespace ProjectBoardWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProjectId,ProjectName,ProjectDesc,ProjectStartDate,ProjectStatus,LeaderID,ClientId")] Project project)
+        public async Task<IActionResult> Create([Bind("ProjectId,ProjectName,ProjectDesc,ProjectStartDate,ProjectStatus,LeaderID,ClientId,HoursProjected,HoursUsed")] Project project)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace ProjectBoardWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProjectId,ProjectName,ProjectDesc,ProjectStartDate,ProjectStatus,LeaderID,ClientId")] Project project)
+        public async Task<IActionResult> Edit(int id, [Bind("ProjectId,ProjectName,ProjectDesc,ProjectStartDate,ProjectStatus,LeaderID,ClientId,HoursProjected,HoursUsed")] Project project)
         {
             if (id != project.ProjectId)
             {

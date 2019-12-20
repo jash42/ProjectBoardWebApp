@@ -15,5 +15,6 @@ namespace ProjectBoardWebApp.Data
         }
 
         public DbSet<Project> Project { get; set; }
+
     }
 }

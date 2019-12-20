@@ -34,5 +34,14 @@ namespace ProjectBoardWebApp.Models
         public string LeaderID { get; set; }
 
         public int ClientId { get; set; }
+
+        [Display(Name ="Projected Hours")]
+        public decimal HoursProjected { get; set; }
+
+        [Display(Name ="Hours Used")]
+        public decimal HoursUsed { get; set; }
+
+
+
     }
 }
