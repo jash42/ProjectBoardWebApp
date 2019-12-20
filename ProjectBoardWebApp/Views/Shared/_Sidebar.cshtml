@@ -5,11 +5,35 @@
         <ul class="sidebar-nav">
             <!-- START user info-->
             <partial name="_LoginPartial" />
-            
+
             <!-- END user info-->
             <!-- Iterates over all sidebar items-->
             <li class="nav-heading">
                 <span>Main Navigation</span>
+            </li>
+            <li class="@Html.isActive(controller: "Projects")">
+                <a href="#projects" title="Projects" data-toggle="collapse">
+                    <em class="icon-book-open"></em>
+                    <span data-localize="sidebar.nav.Projects">Projects</span>
+                </a>
+                <ul id="projects" class="sidebar-nav sidebar-subnav collapse">
+                    <li class="sidebar-subnav-header">Projects</li>
+                    <li class="@Html.isActive("Projects", "Index")">
+                        <a href="@Url.Action("Index", "Projects")" title="All Projects">
+                            <span>All Projects</span>
+                        </a>
+                    </li>
+                    <li class="@Html.isActive("Projects", "Create")">
+                        <a href="@Url.Action("Create", "Projects")" title="Add Projects">
+                            <span>Add New Project</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li class="nav-heading">
+                <span>Other Navigation</span>
             </li>
             <li class="@Html.isActive(controller: "Dashboard")">
                 <a href="#dashboard" title="Dashboard" data-toggle="collapse">

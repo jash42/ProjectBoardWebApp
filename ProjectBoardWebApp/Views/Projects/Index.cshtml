@@ -1,66 +1,88 @@
 ﻿@model IEnumerable<ProjectBoardWebApp.Models.Project>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Projects Main";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="content-heading">
+    Projects
+    <div class="ml-auto">
+        <a class="btn btn-labeled btn-info mb-2" asp-action="Create">
+            <span class="btn-label">
+                <i class="fa fas fa-plus-square"></i>
+            </span>Create Project
+        </a>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProjectName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProjectDesc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProjectStartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProjectStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LeaderID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ClientId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProjectName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProjectDesc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProjectStartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProjectStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LeaderID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClientId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProjectId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProjectId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProjectId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="card">
+    <div class="card-header">
+        <div class="text-sm">Open Projects under development</div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive bootgrid">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th data-column-id="Name" data-order="desc">
+                            @Html.DisplayNameFor(model => model.ProjectName)
+                        </th>
+                        <th data-column-id="Description">
+                            @Html.DisplayNameFor(model => model.ProjectDesc)
+                        </th>
+                        <th data-column-id="StartDate">
+                            @Html.DisplayNameFor(model => model.ProjectStartDate)
+                        </th>
+                        <th data-column-id="Status">
+                            @Html.DisplayNameFor(model => model.ProjectStatus)
+                        </th>
+                        <th data-column-id="Leader">
+                            @Html.DisplayNameFor(model => model.LeaderID)
+                        </th>
+                        <th data-column-id="Client">
+                            @Html.DisplayNameFor(model => model.ClientId)
+                        </th>
+                        <th data-column-id="commands" data-formatter="commands" data-sortable="false"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProjectName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProjectDesc)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProjectStartDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProjectStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LeaderID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ClientId)
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.ProjectId" class="btn btn-xs btn-inverse"><span class="fa fa-clipboard"></span></a>
+                                <a asp-action="Edit" asp-route-id="@item.ProjectId" class="btn btn-xs btn-primary"><span class="fa fa-pencil-alt"></span></a>
+                                <a asp-action="Delete" asp-route-id="@item.ProjectId" class="btn btn-xs btn-danger"><span class="fa fa-trash"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+            @section Scripts {
+                <script src="/vendor/jquery-bootgrid/dist/jquery.bootgrid.js"></script>
+                <script src="/vendor/jquery-bootgrid/dist/jquery.bootgrid.fa.js"></script>
+            }
+

@@ -13,17 +13,21 @@ namespace ProjectBoardWebApp.Models
 
         [Required]
         [StringLength(30)]
+        [Display(Name = "Project Name")]
         public string ProjectName { get; set; }
 
         [Required]
         [StringLength(500)]
+        [Display(Name = "Description")]
         public string ProjectDesc { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
+        [Display(Name = "Start Date")]
         public DateTime ProjectStartDate { get; set; }
 
         [StringLength(25)]
+        [Display(Name = "Status")]
         public string ProjectStatus { get; set; }
 
         [StringLength(450)]

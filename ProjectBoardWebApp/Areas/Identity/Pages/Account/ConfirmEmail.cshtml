@@ -4,5 +4,18 @@
     ViewData["Title"] = "Confirm email";
 }
 
-<h1>@ViewData["Title"]</h1>
-<partial name="_StatusMessage" model="Model.StatusMessage" />
+    <div class="block-center mt-4 wd-xl">
+        <!-- START card-->
+        <div class="card card-flat">
+            <div class="card-header text-center bg-dark">
+                <a href="#">
+                    <img class="block-center" src="~/images/logo.png" alt="Image" />
+                </a>
+            </div>
+            <div class="card-body">
+                <partial name="_StatusMessage" model="Model.StatusMessage" />
+
+            </div>
+        </div>
+        <!-- END card-->
+    </div>
