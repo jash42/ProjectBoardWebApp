@@ -47,6 +47,7 @@ namespace ProjectBoardWebApp.Models
         public string OrgPhone { get; set; }
 
         [StringLength(250)]
+        [DataType(DataType.Url)]
         [Display(Name = "Website")]
         public string OrgWebsite { get; set; }
 
@@ -56,6 +57,7 @@ namespace ProjectBoardWebApp.Models
 
         [StringLength(250)]
         [Display(Name = "Staging Site")]
+        [DataType(DataType.Url)]
         public string StagingUrl { get; set; }
 
     }

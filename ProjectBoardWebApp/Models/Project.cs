@@ -18,9 +18,14 @@ namespace ProjectBoardWebApp.Models
 
         [Required]
         [StringLength(500)]
-        [Display(Name = "Description")]
+        [Display(Name = "Short Description")]
         [DataType(DataType.MultilineText)]
         public string ProjectDesc { get; set; }
+
+        [StringLength(4000)]
+        [DataType(DataType.MultilineText)]
+        [Display(Name = "Full Description")]
+        public string ProjectLongDesc { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -45,7 +50,7 @@ namespace ProjectBoardWebApp.Models
         [Display(Name ="Hours Used")]
         public decimal HoursUsed { get; set; }
 
-
+        public string PercentComplete { get { return Decimal.Round(((HoursUsed / HoursProjected) * 100),0).ToString(); } }
 
     }
 }

@@ -8,80 +8,105 @@
 <div class="content-heading">
     Projects
     <div class="ml-auto">
-        <a class="btn btn-labeled btn-info mb-2" asp-action="Create">
-            <span class="btn-label">
-                <i class="fa fas fa-plus-square"></i>
-            </span>Create Project
-        </a>
-    </div>
-</div>
-<div class="card">
-    <div class="card-header">
-        <div class="text-sm">Open Projects under development</div>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive bootgrid">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th data-column-id="Name" data-order="desc">
-                            @Html.DisplayNameFor(model => model.ProjectVm.ProjectName)
-                        </th>
-                        <th data-column-id="Description">
-                            @Html.DisplayNameFor(model => model.ProjectVm.ProjectDesc)
-                        </th>
-                        <th data-column-id="StartDate">
-                            @Html.DisplayNameFor(model => model.ProjectVm.ProjectStartDate)
-                        </th>
-                        <th data-column-id="Status">
-                            @Html.DisplayNameFor(model => model.ProjectVm.ProjectStatus)
-                        </th>
-                        <th data-column-id="Leader" nowrap>
-                            @Html.DisplayNameFor(model => model.ProjectVm.LeaderID)
-                        </th>
-                        <th data-column-id="Client">
-                            @Html.DisplayNameFor(model => model.ProjectVm.ClientId)
-                        </th>
-                        <th data-column-id="commands" data-formatter="commands" data-sortable="false"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td nowrap>
-                                @Html.DisplayFor(modelItem => item.ProjectVm.ProjectName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ProjectVm.ProjectDesc)
-                            </td>
-                            <td nowrap>
-                                @Html.DisplayFor(modelItem => item.ProjectVm.ProjectStartDate)
-                            </td>
-                            <td nowrap>
-                                @Html.DisplayFor(modelItem => item.ProjectVm.ProjectStatus)
-                            </td>
-                            <td nowrap>
-                                @Html.DisplayFor(modelItem => item.UserVm.UserFullName)
-                            </td>
-                            <td nowrap>
-                                @Html.DisplayFor(modelItem => item.OrgVm.OrgName) 
-                            </td>
-                            <td nowrap>
-                                <a asp-action="Details" asp-route-id="@item.ProjectVm.ProjectId" class="btn btn-xs btn-inverse"><span class="fa fa-desktop"></span></a>
-                                <a asp-action="Edit" asp-route-id="@item.ProjectVm.ProjectId" class="btn btn-xs btn-primary"><span class="fa fa-pencil-alt"></span></a>
-                                <a asp-action="Delete" asp-route-id="@item.ProjectVm.ProjectId" class="btn btn-xs btn-danger"><span class="fa fa-trash"></span></a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+        <a class="btn btn-labeled btn-info mb-2" asp-action="Create"><span class="btn-label"><i class="fa fas fa-plus-square"></i></span>Create Project</a>
     </div>
 </div>
 
+<div class="row">
+    @foreach (var item in Model)
+    {
+     <div class="col-xl-4 col-lg-6">
+        <div class="card b">
+            <div class="card-header">
+                <div class="float-right">
+                    <div class="badge badge-info">@Html.DisplayFor(modelItem => item.ProjectVm.ProjectStatus)</div>
+                </div>
+                <h4 class="m-0">@Html.DisplayFor(modelItem => item.ProjectVm.ProjectName)</h4>
+                <small class="text-muted">@Html.DisplayFor(modelItem => item.ProjectVm.ProjectDesc)</small>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="w-100" data-toggle="tooltip" data-title="Percent Complete">
+                        <div class="progress progress-xs m-0">
+                            <div class="progress-bar bg-info" style="width:@Html.DisplayFor(modelItem => item.ProjectVm.PercentComplete)%;"></div>
+                        </div>
+                    </div>
+                    <div class="wd-xxs text-right">
+                        <div class="text-bold text-muted">@Html.DisplayFor(modelItem => item.ProjectVm.PercentComplete)%</div>
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>Start Date</strong>
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.ProjectVm.ProjectStartDate)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>@Html.DisplayNameFor(model => model.ProjectVm.ClientId)</strong></td>
+                        <td>@Html.DisplayFor(modelItem => item.OrgVm.OrgName)</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Members</strong>
+                        </td>
+                        <td>
+                            <a class="inline" href="#">
+                                <img class="rounded-circle thumb24" src="~/images/user/02.jpg" alt="project member" />
+                            </a>
+                            <a class="inline" href="#">
+                                <img class="rounded-circle thumb24" src="~/images/user/04.jpg" alt="project member" />
+                            </a>
+                            <a class="inline" href="#">
+                                <img class="rounded-circle thumb24" src="~/images/user/05.jpg" alt="project member" />
+                            </a>
+                            <a class="inline" href="#">
+                                <img class="rounded-circle thumb24" src="~/images/user/06.jpg" alt="project member" />
+                            </a>
+                            <a class="inline" href="#">
+                                <strong>+5</strong>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>@Html.DisplayNameFor(model => model.ProjectVm.LeaderID)</strong>
+                        </td>
+                        <td>
+                            <a href="" data-toggle="tooltip" data-title="Team leader">
+                                <img class="rounded-circle thumb24" src="~/images/user/@Html.DisplayFor(modelItem => item.UserVm.ProfilePic)" alt="project member" />
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Metrics</strong>
+                        </td>
+                        <td>
+                            <div class="inline mr-2" data-sparkline="" data-values="20,80" data-type="pie" data-height="24" data-slice-colors="[&quot;#edf1f2&quot;, &quot;#23b7e5&quot;]"></div>
+                            <div class="inline mr-2" data-sparkline="" data-values="60,40" data-type="pie" data-height="24" data-slice-colors="[&quot;#edf1f2&quot;, &quot;#27c24c&quot;]"></div>
+                            <div class="inline" data-sparkline="" data-values="90,10" data-type="pie" data-height="24" data-slice-colors="[&quot;#edf1f2&quot;, &quot;#ff902b&quot;]"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="card-footer text-center">
+                <a asp-action="Details" asp-route-id="@item.ProjectVm.ProjectId" class="btn btn-xs btn-labeled btn-inverse m-1"><span class="btn-label"><i class="fa fa-desktop"></i></span>View</a>
+                <a asp-action="Edit" asp-route-id="@item.ProjectVm.ProjectId" class="btn btn-xs btn-labeled btn-primary m-1"><span class="btn-label"><i class="fa fa-pencil-alt"></i></span>Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.ProjectVm.ProjectId" class="btn btn-xs btn-labeled btn-danger m-1"><span class="btn-label"><i class="fa fa-trash"></i></span>Delete</a>
+            </div>
+        </div>
+    </div>
+
+    }
+        
+</div>
+
+
+
             @section Scripts {
-                <script src="/vendor/jquery-bootgrid/dist/jquery.bootgrid.js"></script>
-                <script src="/vendor/jquery-bootgrid/dist/jquery.bootgrid.fa.js"></script>
+                <script src="/vendor/jquery-sparkline/jquery.sparkline.js"></script>
             }
 
