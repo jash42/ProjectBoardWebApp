@@ -32,7 +32,7 @@ namespace ProjectBoardWebApp.Models
         public string ProjectStatus { get; set; }
 
         [StringLength(450)]
-        [Display(Name = "Project lead")]
+        [Display(Name = "Project Lead")]
         public string LeaderID { get; set; }
 
         [Required]

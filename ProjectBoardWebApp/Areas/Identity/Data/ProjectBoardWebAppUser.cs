@@ -17,6 +17,8 @@ namespace ProjectBoardWebApp.Areas.Identity.Data
         [PersonalData]
         public DateTime DOB { get; set; }
 
-        public string ProfilePic { get; set; }
+        public string ProfilePic { get; set; } = "01.jpg";
+
+        public string UserFullName { get { return FirstName + " " + LastName; } }
     }
 }

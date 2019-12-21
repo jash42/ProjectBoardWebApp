@@ -7,7 +7,6 @@
 
 <div class="content-heading">
     Organizations
-    Organizations
     <div class="ml-auto">
         <a class="btn btn-labeled btn-info mb-2" asp-action="Create">
             <span class="btn-label">
@@ -18,42 +17,39 @@
 </div>
 
 <div class="card">
-    <div class="card-header">
-        <div class="text-sm">Organizations that we do business with</div>
-    </div>
     <div class="card-body">
         <div class="table-responsive bootgrid">
-            <table class="table">
+            <table class="table" id="bootgrid-basic">
                 <thead>
                     <tr>
-                        <th>
+                        <th data-column-id="Organization">
                             @Html.DisplayNameFor(model => model.OrgName)
                         </th>
-                        <th>
+                        <th data-column-id="Address1">
                             @Html.DisplayNameFor(model => model.OrgAddress)
                         </th>
-                        <th>
+                        <th data-column-id="Address2">
                             @Html.DisplayNameFor(model => model.OrgAddress2)
                         </th>
-                        <th>
+                        <th data-column-id="City">
                             @Html.DisplayNameFor(model => model.OrgCity)
                         </th>
-                        <th>
+                        <th data-column-id="State">
                             @Html.DisplayNameFor(model => model.OrgState)
                         </th>
-                        <th>
+                        <th data-column-id="ZipCode">
                             @Html.DisplayNameFor(model => model.OrgZip)
                         </th>
-                        <th>
+                        <th data-column-id="Phone">
                             @Html.DisplayNameFor(model => model.OrgPhone)
                         </th>
-                        <th>
+                        <th data-column-id="Website">
                             @Html.DisplayNameFor(model => model.OrgWebsite)
                         </th>
-                        <th>
+                        <th data-column-id="MainContact">
                             @Html.DisplayNameFor(model => model.MainContact)
                         </th>
-                        <th>
+                        <th data-column-id="StagingURL">
                             @Html.DisplayNameFor(model => model.StagingUrl)
                         </th>
                         <th></th>

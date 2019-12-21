@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ProjectBoardWebApp.Areas.Identity.Data;
 using ProjectBoardWebApp.Data;
 using ProjectBoardWebApp.Models;
 using ProjectBoardWebApp.ViewModel;
@@ -15,14 +16,17 @@ namespace ProjectBoardWebApp.Controllers
     {
         private readonly ProjectDbContext _context;
         private readonly OrgDbContext _orgcontext;
+        private readonly ApplicationDbContext _appcontext;
 
         List<Organizations> orgList = new List<Organizations>();
         List<Project> projList = new List<Project>();
+        List<ApplicationUser> userList = new List<ApplicationUser>();
 
-        public ProjectsController(ProjectDbContext context, OrgDbContext orgcontext)
+        public ProjectsController(ProjectDbContext context, OrgDbContext orgcontext, ApplicationDbContext appcontext)
         {
             _context = context;
             _orgcontext = orgcontext;
+            _appcontext = appcontext;
         }
 
         
@@ -31,12 +35,15 @@ namespace ProjectBoardWebApp.Controllers
         {
             orgList = (from o in _orgcontext.Organizations orderby o.OrgName select o).ToList();
             projList = (from p in _context.Project orderby p.ProjectId select p).ToList();
+            userList = (from u in _appcontext.Users orderby u.LastName select u).ToList();
 
-            var FullProjectData = from p in projList
-                                  join o in orgList on p.ClientId equals o.OrgID
-                                  select new ProjectFullView { projectVm = p, orgVm = o };
 
-            return View(FullProjectData);
+            var FullView = (from p in projList
+                            join o in orgList on p.ClientId equals o.OrgID
+                            join u in userList on p.LeaderID equals u.NormalizedUserName
+                            select new ProjectFullView { ProjectVm = p, OrgVm = o, UserVm = u}).ToList();
+            
+            return View(FullView);
         }
 
         
@@ -62,10 +69,12 @@ namespace ProjectBoardWebApp.Controllers
         public IActionResult Create()
         {
             orgList = (from o in _orgcontext.Organizations orderby o.OrgName select o).ToList();
-
             orgList.Insert(0, new Organizations { OrgID = 0, OrgName = " -- Select Client -- " });
-
             ViewBag.ListOfOrgs = orgList;
+
+            userList = (from u in _appcontext.Users orderby u.LastName select u).ToList();
+            userList.Insert(0, new ApplicationUser { NormalizedUserName = "", FirstName = " -- Select", LastName = "Project Lead --" });
+            ViewBag.ListOfUsers = userList;
 
             return View();
         }
@@ -90,10 +99,12 @@ namespace ProjectBoardWebApp.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             orgList = (from o in _orgcontext.Organizations orderby o.OrgName select o).ToList();
-
             orgList.Insert(0, new Organizations { OrgName = " -- Select Client -- " });
-
             ViewBag.ListOfOrgs = orgList;
+
+            userList = (from u in _appcontext.Users orderby u.LastName select u).ToList();
+            userList.Insert(0, new ApplicationUser { NormalizedUserName = "", FirstName = " -- Select", LastName = "Project Lead --" });
+            ViewBag.ListOfUsers = userList;
 
             if (id == null)
             {

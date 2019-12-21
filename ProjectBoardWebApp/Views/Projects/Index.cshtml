@@ -25,22 +25,22 @@
                 <thead>
                     <tr>
                         <th data-column-id="Name" data-order="desc">
-                            @Html.DisplayNameFor(model => model.projectVm.ProjectName)
+                            @Html.DisplayNameFor(model => model.ProjectVm.ProjectName)
                         </th>
                         <th data-column-id="Description">
-                            @Html.DisplayNameFor(model => model.projectVm.ProjectDesc)
+                            @Html.DisplayNameFor(model => model.ProjectVm.ProjectDesc)
                         </th>
                         <th data-column-id="StartDate">
-                            @Html.DisplayNameFor(model => model.projectVm.ProjectStartDate)
+                            @Html.DisplayNameFor(model => model.ProjectVm.ProjectStartDate)
                         </th>
                         <th data-column-id="Status">
-                            @Html.DisplayNameFor(model => model.projectVm.ProjectStatus)
+                            @Html.DisplayNameFor(model => model.ProjectVm.ProjectStatus)
                         </th>
-                        <th data-column-id="Leader">
-                            @Html.DisplayNameFor(model => model.projectVm.LeaderID)
+                        <th data-column-id="Leader" nowrap>
+                            @Html.DisplayNameFor(model => model.ProjectVm.LeaderID)
                         </th>
                         <th data-column-id="Client">
-                            @Html.DisplayNameFor(model => model.projectVm.ClientId)
+                            @Html.DisplayNameFor(model => model.ProjectVm.ClientId)
                         </th>
                         <th data-column-id="commands" data-formatter="commands" data-sortable="false"></th>
                     </tr>
@@ -49,28 +49,28 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.projectVm.ProjectName)
+                            <td nowrap>
+                                @Html.DisplayFor(modelItem => item.ProjectVm.ProjectName)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.projectVm.ProjectDesc)
+                                @Html.DisplayFor(modelItem => item.ProjectVm.ProjectDesc)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.projectVm.ProjectStartDate)
+                            <td nowrap>
+                                @Html.DisplayFor(modelItem => item.ProjectVm.ProjectStartDate)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.projectVm.ProjectStatus)
+                            <td nowrap>
+                                @Html.DisplayFor(modelItem => item.ProjectVm.ProjectStatus)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.projectVm.LeaderID)
+                            <td nowrap>
+                                @Html.DisplayFor(modelItem => item.UserVm.UserFullName)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.orgVm.OrgName) 
+                            <td nowrap>
+                                @Html.DisplayFor(modelItem => item.OrgVm.OrgName) 
                             </td>
-                            <td>
-                                <a asp-action="Details" asp-route-id="@item.projectVm.ProjectId" class="btn btn-xs btn-inverse"><span class="fa fa-desktop"></span></a>
-                                <a asp-action="Edit" asp-route-id="@item.projectVm.ProjectId" class="btn btn-xs btn-primary"><span class="fa fa-pencil-alt"></span></a>
-                                <a asp-action="Delete" asp-route-id="@item.projectVm.ProjectId" class="btn btn-xs btn-danger"><span class="fa fa-trash"></span></a>
+                            <td nowrap>
+                                <a asp-action="Details" asp-route-id="@item.ProjectVm.ProjectId" class="btn btn-xs btn-inverse"><span class="fa fa-desktop"></span></a>
+                                <a asp-action="Edit" asp-route-id="@item.ProjectVm.ProjectId" class="btn btn-xs btn-primary"><span class="fa fa-pencil-alt"></span></a>
+                                <a asp-action="Delete" asp-route-id="@item.ProjectVm.ProjectId" class="btn btn-xs btn-danger"><span class="fa fa-trash"></span></a>
                             </td>
                         </tr>
                     }

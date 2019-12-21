@@ -13,18 +13,18 @@
                 <!-- User picture-->
                 <div class="user-block-picture">
                     <div class="user-block-status">
-                        <img src="~/images/user/02.jpg" alt="Avatar" width="60" height="60" class="img-thumbnail rounded-circle" />
+                        <img src="~/images/user/@UserManager.FindByNameAsync(User.Identity.Name).Result.ProfilePic" alt="Avatar" width="60" height="60" class="img-thumbnail rounded-circle" />
                         <div class="circle bg-danger circle-lg"></div>
                     </div>
                 </div>
                 <!-- Name and Job-->
                 <div class="user-block-info">
-                    <span class="user-block-name">Hello, @User.Identity.Name</span>
+                    <span class="user-block-name">Hello, @UserManager.FindByNameAsync(User.Identity.Name).Result.UserFullName</span>
                     <span class="user-block-role">Designer</span>
                     <div class="text-center">
-                        <a class="text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage Profile</a><br />
-                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                            <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                        <form id="logoutform" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <a class="text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage Profile</a> | 
+                            <a href="#" onclick="javascript:document.getElementById('logoutform').submit();" class="text-dark">Logout</a>
                         </form>
                     </div>
                 </div>
