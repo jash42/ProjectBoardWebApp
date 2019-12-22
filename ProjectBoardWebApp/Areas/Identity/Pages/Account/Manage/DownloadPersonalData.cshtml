@@ -5,8 +5,14 @@
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
 
-<h4>@ViewData["Title"]</h4>
+<div class="card b">
+    <div class="card-header bg-gray-lighter text-bold">@ViewData["Title"]</div>
+    <div class="card-body">
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+            
+    </div>
+</div>
+
+            @section Scripts {
+                <partial name="_ValidationScriptsPartial" />
+            }
