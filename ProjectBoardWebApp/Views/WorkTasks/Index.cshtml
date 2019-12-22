@@ -1,0 +1,90 @@
+﻿@model IEnumerable<ProjectBoardWebApp.Models.WorkTask>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentTask)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeamID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssignedID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskDesc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateStarted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCompleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoursEstimated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoursUsed)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParentTask)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeamID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssignedID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateStarted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCompleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoursEstimated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoursUsed)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TaskID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TaskID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TaskID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

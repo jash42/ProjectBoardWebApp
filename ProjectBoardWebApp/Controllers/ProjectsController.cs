@@ -72,6 +72,8 @@ namespace ProjectBoardWebApp.Controllers
             orgList.Insert(0, new Organizations { OrgID = 0, OrgName = " -- Select Client -- " });
             ViewBag.ListOfOrgs = orgList;
 
+            Console.WriteLine(orgList);
+
             userList = (from u in _appcontext.Users orderby u.LastName select u).ToList();
             userList.Insert(0, new ApplicationUser { NormalizedUserName = "", FirstName = " -- Select", LastName = "Project Lead --" });
             ViewBag.ListOfUsers = userList;

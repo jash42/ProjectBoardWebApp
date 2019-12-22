@@ -49,6 +49,25 @@
                     </li>
                 </ul>
             </li>
+            <li class="@Html.isActive(controller: "WorkTasks")">
+                <a href="#tasks" title="Tasks" data-toggle="collapse">
+                    <em class="icon-rocket"></em>
+                    <span data-localize="sidebar.nav.Tasks">Tasks</span>
+                </a>
+                <ul id="tasks" class="sidebar-nav sidebar-subnav collapse">
+                    <li class="sidebar-subnav-header">Tasks</li>
+                    <li class="@Html.isActive("WorkTasks", "Index")">
+                        <a href="@Url.Action("Index", "WorkTasks")" title="All Tasks">
+                            <span>All Tasks</span>
+                        </a>
+                    </li>
+                    <li class="@Html.isActive("WorkTasks", "Create")">
+                        <a href="@Url.Action("Create", "WorkTasks")" title="Add Task">
+                            <span>Add New Task</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
 
             <li class="nav-heading">
