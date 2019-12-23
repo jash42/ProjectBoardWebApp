@@ -1,8 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-ProjectBoardWebApp-8533EF1C-53D2-4565-A269-3248114780F5</UserSecretsId>
+    <Authors>James Ash</Authors>
+    <Product>ProjBoard.com</Product>
+    <Copyright>2020</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +21,7 @@
     <Compile Remove="Migrations\20191220143505_CreateHoursFields.Designer.cs" />
     <Compile Remove="Migrations\OrgDb\20191220152043_InitialOrgs.cs" />
     <Compile Remove="Migrations\OrgDb\20191220152043_InitialOrgs.Designer.cs" />
+    <Compile Remove="Services\AuthMessageSenderOptions.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,5 +39,13 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+
+  <ProjectExtensions><VisualStudio><UserProperties wwwroot_4lib_4bootstrap_4dist_4css_4bootstrap_1css_1map__JsonSchema="http://json.schemastore.org/sarif-2.1.0-rtm.4.json" /></VisualStudio></ProjectExtensions>
 
 </Project>

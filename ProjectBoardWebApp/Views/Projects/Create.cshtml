@@ -1,73 +1,100 @@
 ﻿@model ProjectBoardWebApp.Models.Project
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "New Project";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
-
-<h4>Project</h4>
-<hr />
+<div class="content-heading">
+    Projects > Create
+    <div class="ml-auto">
+        <a class="btn btn-labeled btn-outline-info mb-2" asp-action="Index"><span class="btn-label"><i class="fa fa-long-arrow-alt-left"></i></span>Return To Projects</a>
+    </div>
+</div>
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ProjectName" class="control-label"></label>
-                <input asp-for="ProjectName" class="form-control" />
-                <span asp-validation-for="ProjectName" class="text-danger"></span>
+    <div class="col-md-8">
+        <div class="card card-default">
+            <div class="card-header">Create New Project</div>
+            <div class="card-body">
+                <form class="form-horizontal" asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group row">
+                        <label asp-for="ProjectName" class="col-xl-2 col-form-label"></label>
+                        <div class="col-xl-10">
+                            <input asp-for="ProjectName" class="form-control" />
+                            <span asp-validation-for="ProjectName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="ProjectDesc" class="col-xl-2 col-form-label"></label>
+                        <div class="col-xl-10">
+                            <textarea asp-for="ProjectDesc" class="form-control"></textarea>
+                            <span asp-validation-for="ProjectDesc" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="ProjectLongDesc" class="col-xl-2 col-form-label"></label>
+                        <div class="col-xl-10">
+                            <textarea asp-for="ProjectLongDesc" class="form-control"></textarea>
+                            <span asp-validation-for="ProjectLongDesc" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="ProjectStartDate" class="col-xl-2 col-form-label"></label>
+                        <div class="col-xl-10">
+                            <input asp-for="ProjectStartDate" class="form-control" />
+                            <span asp-validation-for="ProjectStartDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="ProjectStatus" class="col-xl-2 col-form-label"></label>
+                        <div class="col-xl-10">
+                            <select asp-for="ProjectStatus" class="custom-select custom-select-sm" asp-items="@(new SelectList(GlobalLists.StatusValueList(), "Value", "Text"))"></select>
+                            <span asp-validation-for="ProjectStatus" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="LeaderID" class="col-xl-2 col-form-label"></label>
+                        <div class="col-xl-10">
+                            <select asp-for="LeaderID" class="custom-select custom-select-sm" asp-items="@(new SelectList(ViewBag.ListOfUsers, "NormalizedUserName", "UserFullName"))"></select>
+                            <span asp-validation-for="LeaderID" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="ClientId" class="col-xl-2 col-form-label"></label>
+                        <div class="col-xl-10">
+                            <select asp-for="ClientId" class="custom-select custom-select-sm" asp-items="@(new SelectList(ViewBag.ListOfOrgs,"OrgID", "OrgName"))"></select>
+                            <span asp-validation-for="ClientId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="HoursProjected" class="col-xl-2 col-form-label"></label>
+                        <div class="col-xl-10">
+                            <input asp-for="HoursProjected" class="form-control" />
+                            <span asp-validation-for="HoursProjected" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="HoursUsed" class="col-xl-2 col-form-label"></label>
+                        <div class="col-xl-10">
+                            <input asp-for="HoursUsed" class="form-control" />
+                            <span asp-validation-for="HoursUsed" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xl-2"></div>
+                        <div class="col-xl-10">
+                            <button class="btn btn-sm btn-outline-primary" type="submit">Create Project</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="ProjectDesc" class="control-label"></label>
-                <textarea asp-for="ProjectDesc" class="form-control"></textarea>
-                <span asp-validation-for="ProjectDesc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProjectLongDesc" class="control-label"></label>
-                <textarea asp-for="ProjectLongDesc" class="form-control"></textarea>
-                <span asp-validation-for="ProjectLongDesc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProjectStartDate" class="control-label"></label>
-                <input asp-for="ProjectStartDate" class="form-control" />
-                <span asp-validation-for="ProjectStartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProjectStatus" class="control-label"></label>
-                <input asp-for="ProjectStatus" class="form-control" />
-                <span asp-validation-for="ProjectStatus" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LeaderID" class="control-label"></label>
-                <select asp-for="LeaderID" class="form-control" asp-items="@(new SelectList(ViewBag.ListOfUsers, "NormalizedUserName", "UserFullName"))"></select>
-                <span asp-validation-for="LeaderID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ClientId" class="control-label"></label>
-                <select asp-for="ClientId" class="form-control" asp-items="@(new SelectList(ViewBag.ListOfOrgs,"OrgID", "OrgName"))"></select>
-                <span asp-validation-for="ClientId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HoursProjected" class="control-label"></label>
-                <input asp-for="HoursProjected" class="form-control" />
-                <span asp-validation-for="HoursProjected" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HoursUsed" class="control-label"></label>
-                <input asp-for="HoursUsed" class="form-control" />
-                <span asp-validation-for="HoursUsed" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

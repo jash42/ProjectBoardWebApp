@@ -30,23 +30,30 @@ namespace ProjectBoardWebApp.Controllers
         }
 
         
-        // GET: Projects
-        public ActionResult Index()
+        public List<ProjectFullView> GetFullProjectView()
         {
             orgList = (from o in _orgcontext.Organizations orderby o.OrgName select o).ToList();
             projList = (from p in _context.Project orderby p.ProjectId select p).ToList();
             userList = (from u in _appcontext.Users orderby u.LastName select u).ToList();
 
-
-            var FullView = (from p in projList
+            //List<ProjectFullView> fullView = new List<ProjectFullView>();
+            var fullView = (from p in projList
                             join o in orgList on p.ClientId equals o.OrgID
                             join u in userList on p.LeaderID equals u.NormalizedUserName
-                            select new ProjectFullView { ProjectVm = p, OrgVm = o, UserVm = u}).ToList();
-            
-            return View(FullView);
+                            select new ProjectFullView { ProjectVm = p, OrgVm = o, UserVm = u }).ToList();
+
+            return fullView;
         }
 
         
+        // GET: Projects
+        public ActionResult Index()
+        {
+            var data = GetFullProjectView();
+            return View(data);
+        }
+
+
         // GET: Projects/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -72,7 +79,6 @@ namespace ProjectBoardWebApp.Controllers
             orgList.Insert(0, new Organizations { OrgID = 0, OrgName = " -- Select Client -- " });
             ViewBag.ListOfOrgs = orgList;
 
-            Console.WriteLine(orgList);
 
             userList = (from u in _appcontext.Users orderby u.LastName select u).ToList();
             userList.Insert(0, new ApplicationUser { NormalizedUserName = "", FirstName = " -- Select", LastName = "Project Lead --" });
@@ -86,7 +92,7 @@ namespace ProjectBoardWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProjectId,ProjectName,ProjectDesc,ProjectStartDate,ProjectStatus,LeaderID,ClientId,HoursProjected,HoursUsed")] Project project)
+        public async Task<IActionResult> Create([Bind("ProjectId,ProjectName,ProjectDesc,ProjectLongdesc,ProjectStartDate,ProjectStatus,LeaderID,ClientId,HoursProjected,HoursUsed")] Project project)
         {
             if (ModelState.IsValid)
             {
@@ -126,7 +132,7 @@ namespace ProjectBoardWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProjectId,ProjectName,ProjectDesc,ProjectStartDate,ProjectStatus,LeaderID,ClientId,HoursProjected,HoursUsed")] Project project)
+        public async Task<IActionResult> Edit(int id, [Bind("ProjectId,ProjectName,ProjectDesc,ProjectLongDesc,ProjectStartDate,ProjectStatus,LeaderID,ClientId,HoursProjected,HoursUsed")] Project project)
         {
             if (id != project.ProjectId)
             {

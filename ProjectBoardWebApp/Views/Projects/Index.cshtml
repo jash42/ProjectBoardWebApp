@@ -8,7 +8,7 @@
 <div class="content-heading">
     Projects
     <div class="ml-auto">
-        <a class="btn btn-labeled btn-info mb-2" asp-action="Create"><span class="btn-label"><i class="fa fas fa-plus-square"></i></span>Create Project</a>
+        <a class="btn btn-labeled btn-outline-info mb-2" asp-action="Create"><span class="btn-label"><i class="fa fas fa-plus-square"></i></span>Create Project</a>
     </div>
 </div>
 
@@ -19,7 +19,7 @@
             <div class="card b">
                 <div class="card-header">
                     <div class="float-right">
-                        <div class="badge badge-info">
+                        <div class="badge @Html.StatusClass(item.ProjectVm.ProjectStatus)">
                             @Html.DisplayFor(modelItem => item.ProjectVm.ProjectStatus)
                         </div>
                     </div>

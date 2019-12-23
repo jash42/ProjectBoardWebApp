@@ -21,5 +21,26 @@ namespace ProjectBoardWebApp
 
             return (controller == actualController && action == actualAction) ? activeClass : String.Empty;
         }
+
+        public static string StatusClass(this IHtmlHelper html, string status = null)
+        {
+
+            string badgeClass = status switch
+            {
+                "Created" => "badge-light",
+                "Requirements" => "badge-info",
+                "Design" => "badge-pink",
+                "Development" => "badge-purple",
+                "Testing" => "badge-inverse",
+                "User Feedback" => "badge-green",
+                "On Hold" => "badge-warning",
+                "Canceled" => "badge-danger",
+                "Closed" => "badge-dark",
+                "Completed" => "badge-success",
+                _ => "badge-info",
+            };
+            return badgeClass;
+            
+        }
     }
 }

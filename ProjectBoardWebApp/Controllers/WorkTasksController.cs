@@ -87,13 +87,15 @@ namespace ProjectBoardWebApp.Controllers
         // GET: WorkTasks/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            //projectList = (from p in _projcontext.Project orderby p.ProjectName select p).ToList();
-            //projectList.Insert(0, new Project { ProjectId = 0, ProjectName = " -- Select Project -- " });
-            //ViewBag.ListOfProjects = projectList;
-
             userList = (from u in _appcontext.Users orderby u.LastName select u).ToList();
             userList.Insert(0, new ApplicationUser { NormalizedUserName = "", FirstName = " -- Assign", LastName = "User --" });
             ViewBag.ListOfUsers = userList;
+
+            projectList = (from p in _projcontext.Project orderby p.ProjectName select p).ToList();
+            projectList.Insert(0, new Project { ProjectId = 0, ProjectName = " -- Select Project -- " });
+            ViewBag.ListOfProjects = projectList;
+
+            ViewBag.ListOfTasks = _context.WorkTask.ToList();
 
             if (id == null)
             {
